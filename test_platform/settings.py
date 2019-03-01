@@ -91,7 +91,7 @@ DATABASES = {
             'PORT': '3306',
             'NAME': 'user_app',
             'USER': 'root',
-            'PASSWORD': '',
+            'PASSWORD': 'root',
             'OPTIONS':  {
                 'init_command': "SET sql_mode='NO_ENGINE_SUBSTITUTION,NO_AUTO_CREATE_USER'",
                         },
