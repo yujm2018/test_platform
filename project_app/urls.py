@@ -1,7 +1,7 @@
 from django.urls import path
 from project_app import views
 
-urlpattens=[
+urlpatterns=[
 
     path('project_manage',views.project_manage),
 ]
