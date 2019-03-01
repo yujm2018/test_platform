@@ -31,6 +31,7 @@ def login_action(request):
 #     pass
 
 #退出登录
+@login_required()
 def logout(request):
     auth.logout(request)
     response = HttpResponseRedirect('/')
