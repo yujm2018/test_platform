@@ -6,7 +6,7 @@ class Project(models.Model):
     """
     name = models.CharField("名称", max_length=100, blank=False, default="")
     describe = models.TextField("描述", default="")
-    status = models.BooleanField("状态：", default=True)
+    status = models.BooleanField("状态", default=True)
     create_time = models.DateTimeField("创建时间", auto_now=True)
 
     def __str__(self):

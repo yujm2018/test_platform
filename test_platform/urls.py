@@ -25,6 +25,4 @@ urlpatterns = [
     path('accounts/login/', views.index),
     path('logout', views.logout),
     path("manage/",include('project_app.urls', namespace="project_app")),
-#     path('project_manage', views.project_manage),
-#     path('add_project', views.add_project),
  ]

@@ -1,24 +1,6 @@
-
-<!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!--<link rel="icon" href="../../favicon.ico">-->
-
-    <title>测试管理平台</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://v3.bootcss.com/examples/dashboard/dashboard.css" rel="stylesheet">
-  </head>
-
+{% extends "base.html" %}
+{% block content %}
   <body>
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -58,9 +40,15 @@
             <li><a href="">测试工具</a></li>
           </ul>
         </div>
+
+        {% if type == 'list' %}
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h2 class="sub-header">项目列表</h2>
-          <div class="table-responsive">
+          <h2 class="sub-header">项目列表
+              <div class="btn-group btn-group-sm" style="float:right;">
+                    <button type="button" class="btn btn-primary"  onclick="window.location.href='/manage/add_project' ">创建项目</button>
+              </div>
+          </h2>
+           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -69,10 +57,10 @@
                   <th>描述</th>
                   <th>状态</th>
                   <th>创建时间</th>
+                  <th>操作</th>
                 </tr>
               </thead>
               <tbody>
-
               {% for project in projects %}
                 <tr>
                   <td>{{ project.id }}</td>
@@ -80,21 +68,57 @@
                   <td>{{ project.describe }}</td>
                   <td>{{ project.status }}</td>
                   <td>{{ project.create_time }}</td>
+                  <td>
+                      <a href="/manage/edit_project/{{ project.id }}">编辑</a>
+                      <a href="/manage/delete_project/{{ project.id }}">删除</a>
+                  </td>
                 </tr>
               {% endfor %}
-
               </tbody>
             </table>
           </div>
         </div>
+      {% endif %}
+      {% if type == 'add' %}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h2 class="sub-header">添加项目</h2>
+           <div class="table-responsive">
+               <form action="/manage/add_project" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">创建</button>
+                    <button type="submit" class="btn btn-default" onclick="window.location.href='/manage/project_manage' ">取消</button>
+               </form>
+          </div>
+        </div>
+      {% endif %}
+
+{#      {% if type == 'edit' %}#}
+{#        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">#}
+{#          <h2 class="sub-header">编辑项目</h2>#}
+{#           <div class="table-responsive">#}
+{#               <form action="/manage/edit_project"  method="post">#}
+{#                    {% csrf_token %}#}
+{#                    {{ form.as_p }}#}
+{#                    <button type="submit" class="btn btn-success">保存</button>#}
+{#                    <button type="submit" class="btn btn-default" onclick="window.location.href='/manage/project_manage/{{ project.id }}' ">取消</button>#}
+{#               </form>#}
+{#          </div>#}
+{#        </div>#}
+{#      {% endif %}#}
+      {% if type == 'edit'%}
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h3 class="sub-header">编辑项目</h3>
+                <div class="table-responsive">
+                    <form role="form" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">保存</button>
+                        <button class="btn btn-default" onclick="window.location.href='/manage/project_manage'">取消</button>
+                    </form>
+                </div>
+            </div>
+      {% endif %}
       </div>
     </div>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://v3.bootcss.com/assets/js/vendor/holder.min.js"></script>
-  </body>
-</html>
+{% endblock %}
