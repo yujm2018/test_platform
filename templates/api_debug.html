@@ -1,6 +1,5 @@
 {% extends "case_manage.html" %}
 {% block api_debug %}
-{#    <form class="form-horizontal">#}
     <fieldset>
         <div style="width:80%; margin-left: 20px;">
             <div id="legend" >
@@ -63,5 +62,12 @@
             <textarea id="result" class="form-control" rows="10" name=textarea></textarea>
         </div>
     </fieldset>
-{#    </form>#}
+    <script>
+        $(document).ready(function () {
+            $("#send").click(function () {
+                let url = $("#req_url").val();
+                    console.log(url)
+            });
+        });
+    </script>
 {% endblock %}
