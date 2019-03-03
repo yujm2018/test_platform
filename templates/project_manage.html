@@ -45,7 +45,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h2 class="sub-header">项目列表
               <div class="btn-group btn-group-sm" style="float:right;">
-                    <button type="button" class="btn btn-primary"  onclick="window.location.href='/manage/add_project' ">创建项目</button>
+                    <button type="button" class="btn btn-success"  onclick="window.location.href='/manage/add_project' ">创建项目</button>
               </div>
           </h2>
            <div class="table-responsive">
@@ -93,19 +93,6 @@
         </div>
       {% endif %}
 
-{#      {% if type == 'edit' %}#}
-{#        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">#}
-{#          <h2 class="sub-header">编辑项目</h2>#}
-{#           <div class="table-responsive">#}
-{#               <form action="/manage/edit_project"  method="post">#}
-{#                    {% csrf_token %}#}
-{#                    {{ form.as_p }}#}
-{#                    <button type="submit" class="btn btn-success">保存</button>#}
-{#                    <button type="submit" class="btn btn-default" onclick="window.location.href='/manage/project_manage/{{ project.id }}' ">取消</button>#}
-{#               </form>#}
-{#          </div>#}
-{#        </div>#}
-{#      {% endif %}#}
       {% if type == 'edit'%}
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h3 class="sub-header">编辑项目</h3>
@@ -119,6 +106,7 @@
                 </div>
             </div>
       {% endif %}
+
       </div>
     </div>
 {% endblock %}
