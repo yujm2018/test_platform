@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from project_app.models import Project,Module
+from project_app.models import Project
 from django.http import HttpResponseRedirect
-from .forms import ProjectForm
+from project_app.forms import ProjectForm
 
 @login_required()   #判断用户是否登录
 def project_manage(request):
@@ -21,7 +21,8 @@ def add_project(request):
         if form.is_valid():
             name = form.cleaned_data['name']
             describe = form.cleaned_data['describe']
-            Project.objects.create(name=name,describe=describe)
+            status = form.cleaned_data['status']
+            Project.objects.create(name=name,describe=describe,status=status)
             return HttpResponseRedirect('/manage/project_manage')
     else:
         form = ProjectForm()
