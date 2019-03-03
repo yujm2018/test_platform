@@ -32,22 +32,22 @@ def add_module(request):
     return render(request, 'module_manage.html', {'form': form,"type":"add"})
 
 @login_required()
-def edit_module(request,pid):
+def edit_module(request,mid):
     if request.method == 'POST':
         form = ModuleForm(request.POST)
         if form.is_valid():
-            model = Module.objects.get(id=pid)
+            model = Module.objects.get(id=mid)
             model.name = form.cleaned_data['name']
             model.describe = form.cleaned_data['describe']
             model.project = form.cleaned_data['project']
             model.save()
             return HttpResponseRedirect("/manage/module_manage")
     else:
-        if pid:
-            form = ModuleForm(instance=Module.objects.get(id=pid))
+        if mid:
+            form = ModuleForm(instance=Module.objects.get(id=mid))
     return render(request, 'module_manage.html', {'form': form,"type":"edit"})
 
 @login_required()
-def delete_module(request,pid):
-    Module.objects.get(id=pid).delete()
+def delete_module(request,mid):
+    Module.objects.get(id=mid).delete()
     return HttpResponseRedirect("/manage/module_manage")

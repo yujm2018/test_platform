@@ -23,6 +23,8 @@ def login_action(request):
                 return HttpResponseRedirect("/manage/project_manage")
             else:
                 return render(request, "index.html", {"error": "用户名或者密码错误!"})
+    else:
+        return render(request, "index.html")
 
 
 #退出登录

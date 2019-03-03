@@ -12,7 +12,7 @@ urlpatterns=[
     #模块管理
     path('module_manage',module_views.module_manage),
     path('add_module',module_views.add_module),
-    path('edit_module/<int:pid>',module_views.edit_module),
-    path('delete_module/<int:pid>',module_views.delete_module),
+    path('edit_module/<int:mid>',module_views.edit_module),
+    path('delete_module/<int:mid>',module_views.delete_module),
 ]
 app_name = 'project_app'
