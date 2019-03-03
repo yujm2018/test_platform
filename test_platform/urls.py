@@ -25,4 +25,5 @@ urlpatterns = [
     path('accounts/login/', views.index),
     path('logout', views.logout),
     path("manage/",include('project_app.urls', namespace="project_app")),
+    path("interface/",include('interface_app.urls', namespace="interface_app")),
  ]
