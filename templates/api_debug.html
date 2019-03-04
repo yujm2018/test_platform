@@ -24,12 +24,6 @@
                     <label class="radio-inline">
                         <input type="radio" name="req_method" id="post" value="post"> POST
                     </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="req_method" id="put" value="put"> PUT
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="req_method" id="delete" value="delete"> DELETE
-                    </label>
                 </div>
                 <div style="margin-top: 10px;">
                     <label>参数类型：</label>
@@ -63,19 +57,23 @@
         </div>
     </fieldset>
     <script>
-        $(document).ready(function () {
-            $("#send").click(function () {
-                let url = $("#req_url").val();
-                let method = $('input[name="req_method"]:checked').val();
-                let parameter = $("#req_parameter").val();
-                if (url=="") {
-                    window.alert("请求的url不能为空");
-                }
-                else if (method=="") {
-                    window.alert("请求的方法不能为空!");
-                }
+        $(document).ready(function ()
+            {
+                $("#send").click(function ()
+                    {
+                        let url = $("#req_url").val();
 
+                        let method = $('input[name="req_method"]:checked').val();
+
+                        let parameter = $("#req_parameter").val();
+
+                        if (url==="")
+                            {window.alert("url不能为空");}
+
+                        else if (method==="")
+                            {window.alert("方法不能为空");}
+
+                    });
             });
-        });
     </script>
 {% endblock %}
