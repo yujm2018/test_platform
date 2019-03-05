@@ -15,24 +15,23 @@ def debug(request):
     else:
         return HttpResponse('404')
 
+
+
 def api_debug(request):
     if request.method == "POST":
         url = request.POST.get("req_url")
         method = request.POST.get("req_method")
         parameter = request.POST.get("req_parameter")
-        print(url)
-        print(method)
-        print(parameter)
-        # payload = json.loads(parameter)
 
-        # if request.method == "get":
-        #     r = requests.get(url,parameter=payload)
-        #
-        # if method == "post":
-        #     r = requests.post(url,data=payload)
-        #
-        # return HttpResponse(r.text)
-        return HttpResponse("hello")
+        if request.method == "get":
+            r = requests.get(url,params=parameter)
+            ret = r.text
+
+        if method == "post":
+            r = requests.post(url,data=json.dumps(parameter))
+            ret=r.text
+
+        return HttpResponse(ret)
 
     else:
         return render(request, "api_debug.html", {"type": 'debug'})
