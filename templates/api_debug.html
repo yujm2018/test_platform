@@ -73,6 +73,21 @@
                         else if (method==="")
                             {window.alert("方法不能为空");}
 
+                        else if (parameter === "")
+                        {parameter = "{}";}
+
+                        {## 发送post请求#}
+                        $.post("api_debug",
+                            {
+                                "req_url":url,
+                                "req_method":method,
+                                "req_parameter":parameter
+                            },
+                            function (result)
+                            {
+                                $("#result").html(result);
+                            });
+
                     });
             });
     </script>
