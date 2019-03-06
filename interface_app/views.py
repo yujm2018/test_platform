@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-import requests,json
+import requests,json,re
 
 def case_manage(request):
     if request.method=="GET":
@@ -23,15 +23,17 @@ def api_debug(request):
         method = request.POST.get("req_method")
         parameter = request.POST.get("req_parameter")
 
-        if request.method == "get":
-            r = requests.get(url,params=parameter)
-            ret = r.text
+        payload=json.loads(parameter.replace("'","\""))
+
+        if method == "get":
+            r = requests.get(url,params=payload)
+            r = r.text
 
         if method == "post":
-            r = requests.post(url,data=json.dumps(parameter))
-            ret=r.text
+            r = requests.post(url,data=payload)
+            r = r.text
 
-        return HttpResponse(ret)
+        return HttpResponse(r)
 
     else:
         return render(request, "api_debug.html", {"type": 'debug'})
