@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from project_app.models import Project,Module
+
 # # 若不勾选状态如何设置
 # class ProjectForm(forms.Form):
 #     name = forms.CharField(label='名称', max_length=100)
