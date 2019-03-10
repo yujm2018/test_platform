@@ -1,11 +1,10 @@
 from django.db import models
-from project_app.models import Project,Module
+from project_app.models import Module
 
 class TestCase(models.Model):
     """
     用例表
     """
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
     name = models.CharField("名称", max_length=100, blank=False, default="")
     url = models.TextField("URL", default="")
@@ -15,6 +14,10 @@ class TestCase(models.Model):
     req_parameter = models.TextField("请求参数", default="")
     response_assert = models.TextField("验证", default="")
     create_time = models.DateTimeField("创建时间", auto_now=True)
+
+    class Meta:
+        verbose_name = '用例管理'
+        verbose_name_plural = '用例管理'
 
     def __str__(self):
         return self.name

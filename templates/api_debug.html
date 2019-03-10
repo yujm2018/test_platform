@@ -101,17 +101,18 @@
                         let req_type = $('input[name="req_type"]:checked').val();
                         let header = $("#req_header").val();
 
+                        {#console.log("类型",req_type);#}
+                        {#console.log("头部",header);#}
+                        {#window.alert("hello JQ")#}
                         if (url==="")
                             {window.alert("url不能为空");}
-
                         else if (method==="")
                             {window.alert("方法不能为空");}
-
                         else if (parameter === "")
                         {parameter = "{}";}
 
                         {## 发送post请求#}
-                        $.post("api_debug",
+                        $.post("save_case",
                             {
                                 "req_url":url,
                                 "req_method":method,
@@ -121,6 +122,7 @@
                             },
                             function (result)
                             {
+                                console.log("666",result)
                                 $("#result").html(result);
                             });
 
