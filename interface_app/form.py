@@ -6,3 +6,4 @@ class ModuleForm(forms.ModelForm):
     class Meta:
         model = Module
         fields = ['name']
+        print("hello")
